@@ -1,0 +1,158 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('img/Universal-Estudios.jpg') center center/cover no-repeat;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.cotizador-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.2);
+  padding: 2.5rem 2rem;
+  z-index: 3;
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: center;
+}
+
+.cotizador-container h1 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #222;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  background: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: #005fa3;
+}
+
+.reset-btn {
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+.reset-btn:hover {
+  background: #ff6666;
+  color: #fff;
+}
+
+.resultado {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: #007700;
+  font-weight: bold;
+}
+
+#resultado-auto {
+  margin-top: 1.5rem;
+}
+
+.cotizador-container h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.switch-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.switch-buttons button {
+  background: #eee;
+  color: #222;
+  border: none;
+  border-radius: 6px 6px 0 0;
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 600;
+}
+
+.switch-buttons button.active {
+  background: #0077cc;
+  color: #fff;
+}
+
+#seccion-hoteles, #seccion-cabanas {
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+} 
+
+.form-group label input[type="radio"] {
+  margin-right: 0.3em;
+} 

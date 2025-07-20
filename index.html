@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cotizador de Viajes a Orlando</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="background"></div>
+  <div class="overlay"></div>
+  <div class="cotizador-container">
+    <h1>Cotizador de Viajes a Orlando</h1>
+    <div class="switch-buttons">
+      <button id="btn-hoteles" class="active">Hoteles</button>
+      <button id="btn-cabanas">Cabañas</button>
+      <button id="btn-auto">Auto</button>
+      <button id="btn-parques">Parques</button>
+      <button id="btn-credito">Pagos a Crédito</button>
+    </div>
+    <div id="seccion-hoteles">
+      <form id="hotel-form">
+        <h2>Hoteles</h2>
+        <div class="form-group">
+          <label for="precio-habitacion">Precio por habitación ($):</label>
+          <input type="number" id="precio-habitacion" name="precio-habitacion" min="0" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label for="cantidad-habitaciones">Cantidad de habitaciones:</label>
+          <input type="number" id="cantidad-habitaciones" name="cantidad-habitaciones" min="1" step="1" required>
+        </div>
+        <button type="submit">Calcular total</button>
+        <button type="button" id="reset-hotel" class="reset-btn">Reiniciar</button>
+      </form>
+      <div id="resultado-hotel" class="resultado"></div>
+    </div>
+    <div id="seccion-cabanas" style="display:none;">
+      <form id="cabana-form">
+        <h2>Cabañas</h2>
+        <div class="form-group">
+          <label for="precio-cabana">Precio por cabaña ($):</label>
+          <input type="number" id="precio-cabana" name="precio-cabana" min="0" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label for="cantidad-cabanas">Cantidad de cabañas:</label>
+          <input type="number" id="cantidad-cabanas" name="cantidad-cabanas" min="1" step="1" required>
+        </div>
+        <button type="submit">Calcular total</button>
+        <button type="button" id="reset-cabana" class="reset-btn">Reiniciar</button>
+      </form>
+      <div id="resultado-cabana" class="resultado"></div>
+    </div>
+    <div id="seccion-auto" style="display:none;">
+      <form id="auto-form">
+        <h2>Alquiler de Auto</h2>
+        <div class="form-group">
+          <label for="precio-auto">Precio del auto ($):</label>
+          <input type="number" id="precio-auto" name="precio-auto" min="0" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label for="dias-auto">Días de alquiler:</label>
+          <input type="number" id="dias-auto" name="dias-auto" min="1" step="1" required>
+        </div>
+        <div class="form-group">
+          <label for="descuento-auto">Descuento (%):</label>
+          <select id="descuento-auto" name="descuento-auto" required>
+            <option value="0">0%</option>
+            <option value="10">10%</option>
+            <option value="15">15%</option>
+            <option value="20" selected>20%</option>
+            <option value="25">25%</option>
+            <option value="30">30%</option>
+          </select>
+        </div>
+        <button type="submit">Calcular total</button>
+        <button type="button" id="reset-auto" class="reset-btn">Reiniciar</button>
+      </form>
+      <div id="resultado-auto" class="resultado"></div>
+    </div>
+    <div id="seccion-parques" style="display:none;">
+      <form id="parques-form">
+        <h2>Parques</h2>
+        <div class="form-group">
+          <label for="parque">Parque:</label>
+          <select id="parque" name="parque" required>
+            <option value="Disney">Disney</option>
+            <option value="Magic Kingdom">Magic Kingdom</option>
+            <option value="Animal Kingdom">Animal Kingdom</option>
+            <option value="Epcot">Epcot</option>
+            <option value="Hollywood Studios">Hollywood Studios</option>
+            <option value="Universal Studios">Universal Studios</option>
+            <option value="Island Of Adventure">Island Of Adventure</option>
+            <option value="Volcano Bay">Volcano Bay</option>
+            <option value="Epic Universe">Epic Universe</option>
+            <option value="SeaWorld">SeaWorld</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="precio-ticket">Precio del ticket ($):</label>
+          <input type="number" id="precio-ticket" name="precio-ticket" min="0" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label for="personas">Número de personas:</label>
+          <input type="number" id="personas" name="personas" min="1" step="1" required>
+        </div>
+        <div class="form-group">
+          <label>Método de pago:</label>
+          <label><input type="radio" name="pago" value="contado" checked> Contado</label>
+          <label><input type="radio" name="pago" value="credito"> Crédito/Poquito a poquito</label>
+        </div>
+        <button type="submit">Calcular total</button>
+        <button type="button" id="reset-parques" class="reset-btn">Reiniciar</button>
+      </form>
+      <div id="resultado-parques" class="resultado"></div>
+    </div>
+    <div id="seccion-credito" style="display:none;">
+      <form id="credito-form">
+        <h2>Pagos a Crédito</h2>
+        <div class="form-group">
+          <label for="monto-factura">Monto de la factura ($):</label>
+          <input type="number" id="monto-factura" name="monto-factura" min="0" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label for="reserva">Reserva ($):</label>
+          <input type="number" id="reserva" name="reserva" min="0" step="0.01" required>
+        </div>
+        <button type="submit">Calcular cuotas</button>
+        <button type="button" id="reset-credito" class="reset-btn">Reiniciar</button>
+      </form>
+      <div id="resultado-credito" class="resultado"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 
