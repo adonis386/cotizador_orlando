@@ -181,7 +181,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const reserva = parseFloat(document.getElementById('reserva').value) || 0;
     const saldo = montoFactura - reserva;
     const cuota = saldo / 6;
-    resultadoCredito.innerHTML = `Monto de la factura: $${montoFactura.toFixed(2)} USD<br>Reserva: $${reserva.toFixed(2)} USD<br>Saldo a financiar: $${saldo.toFixed(2)} USD<br>6 cuotas de: <b>$${cuota.toFixed(2)} USD</b>`;
+
+    // Calcular fechas de pago
+    const hoy = new Date();
+    let year = hoy.getFullYear();
+    let month = hoy.getMonth() + 1; // JS: 0=enero
+    let fechas = [];
+    let dia = 15;
+    // Primera cuota: 15 del mes siguiente
+    for (let i = 0; i < 6; i++) {
+      if (i % 2 === 0) {
+        dia = 15;
+        if (i === 0) month += 1; // primera cuota, mes siguiente
+        else month += 1; // cada 2 cuotas, avanzar mes
+      } else {
+        dia = 30;
+      }
+      // Ajustar año si el mes pasa de diciembre
+      if (month > 12) {
+        month = 1;
+        year += 1;
+      }
+      // Formatear fecha DD/MM/YYYY
+      const fecha = `${dia.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+      fechas.push(fecha);
+    }
+
+    let cuotasHtml = '<ul style="padding-left:1.2em;text-align:left;">';
+    for (let i = 0; i < 6; i++) {
+      cuotasHtml += `<li>Cuota ${i+1}: $${cuota.toFixed(2)} USD - Pago: <b>${fechas[i]}</b></li>`;
+    }
+    cuotasHtml += '</ul>';
+
+    resultadoCredito.innerHTML = `Monto de la factura: $${montoFactura.toFixed(2)} USD<br>Reserva: $${reserva.toFixed(2)} USD<br>Saldo a financiar: $${saldo.toFixed(2)} USD<br>${cuotasHtml}`;
   });
 
   resetCredito.addEventListener('click', function() {
