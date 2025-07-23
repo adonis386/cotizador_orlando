@@ -123,36 +123,7 @@
       <div id="resultado-credito" class="resultado"></div>
     </div>
   </div>
+  <a href="cotizacion.html" class="pdf-link-btn" style="display:block;margin:2rem auto 0 auto;text-align:center;max-width:300px;">Ir a Generar Cotización PDF</a>
   <script src="script.js"></script>
-  <!-- Formulario de prueba para PDF -->
-<div style="margin:2rem 0; padding:1rem; border:1px solid #ccc;">
-  <h3>Probar generación de PDF</h3>
-  <form id="pdf-test-form">
-    <input type="text" id="pdf-titulo" placeholder="Título" value="Cotización de Prueba" required>
-    <input type="text" id="pdf-desc" placeholder="Descripción" value="Esta es una cotización de ejemplo." required>
-    <button type="submit">Generar PDF</button>
-  </form>
-</div>
-<script>
-document.getElementById('pdf-test-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const titulo = document.getElementById('pdf-titulo').value;
-  const descripcion = document.getElementById('pdf-desc').value;
-  const response = await fetch('/api/generar-pdf', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ titulo, descripcion })
-  });
-  const blob = await response.blob();
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'cotizacion.pdf';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  window.URL.revokeObjectURL(url);
-});
-</script>
-</body>
+  </body>
 </html> 

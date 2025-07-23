@@ -153,6 +153,12 @@ button[type="submit"]:hover {
   margin-right: 0.3em;
 } 
 
+.cotiz-opcion-form {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 4px; /* para que el scroll no tape el contenido */
+}
+
 /* --- Responsive Styles --- */
 @media (max-width: 600px) {
   html, body {
@@ -165,6 +171,8 @@ button[type="submit"]:hover {
     min-width: unset;
     width: 98vw;
     max-width: 100vw;
+    height: 98vh;
+    max-height: 98vh;
     padding: 1.2rem 0.5rem;
     border-radius: 0;
     box-shadow: none;
@@ -173,7 +181,9 @@ button[type="submit"]:hover {
     left: unset;
     transform: none;
     z-index: 10;
-    background: rgba(255,255,255,0.97);
+    background: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   .background {
     display: none;
@@ -195,9 +205,16 @@ button[type="submit"]:hover {
     font-size: 1.1rem;
   }
   .form-group input[type="number"],
-  .form-group select {
+  .form-group input[type="text"],
+  .form-group input[type="date"],
+  .form-group input[type="time"],
+  .form-group select,
+  .form-group textarea {
     font-size: 1.1rem;
     padding: 0.7rem;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
   }
   .cotizador-container h1 {
     font-size: 1.2rem;
@@ -219,8 +236,19 @@ button[type="submit"]:hover {
     font-size: 1rem;
     word-break: break-word;
   }
-  .cotizador-container {
-    background: #fff;
-    z-index: 10;
+  .cotizador-container input,
+  .cotizador-container select,
+  .cotizador-container textarea,
+  .cotizador-container img {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .cotizador-container * {
+    word-break: break-word;
+  }
+  .cotiz-opcion-form {
+    max-height: 55vh;
+    overflow-y: auto;
+    padding-right: 2px;
   }
 } 

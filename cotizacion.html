@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generar Cotización PDF</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="background"></div>
+  <div class="overlay"></div>
+  <div class="cotizador-container">
+    <h1>Generar Cotización PDF</h1>
+    <div class="switch-buttons">
+      <button class="cotiz-btn active" data-opcion="hotel">Hotel</button>
+      <button class="cotiz-btn" data-opcion="cabana">Cabaña</button>
+      <button class="cotiz-btn" data-opcion="auto">Auto</button>
+      <button class="cotiz-btn" data-opcion="parques">Parques</button>
+      <button class="cotiz-btn" data-opcion="traslados">Traslados</button>
+      <button class="cotiz-btn" data-opcion="vuelos">Vuelos</button>
+      <button class="cotiz-btn" data-opcion="tours">Tours</button>
+    </div>
+    <form id="cotizacion-form">
+      <!-- Encabezado derecho fijo y fecha de reserva -->
+      <input type="hidden" id="encabezado-derecho" value="Reserva HCPB5C Petición de reserva">
+      <input type="hidden" id="fecha-reserva" value="">
+      <!-- Formulario Hotel (por defecto visible) -->
+      <div id="form-hotel" class="cotiz-opcion-form">
+        <input type="hidden" id="titulo" value="Hotel">
+        <table class="cotiz-table">
+          <tr>
+            <td colspan="2">
+              <label for="nombre-titulo">Nombre del hotel:</label>
+              <input type="text" id="nombre-titulo" name="nombre-titulo" required>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="checkin">Check-in:</label>
+              <input type="date" id="checkin" name="checkin" required>
+            </td>
+            <td>
+              <label for="checkout">Check-out:</label>
+              <input type="date" id="checkout" name="checkout" required>
+            </td>
+          </tr>
+        </table>
+        <div class="form-group">
+          <label for="personas">¿Cuántas personas son?</label>
+          <input type="number" id="personas" name="personas" min="1" max="20" value="1" required>
+        </div>
+        <div id="nombres-personas"></div>
+        <div class="form-group">
+          <label>Imágenes (máx 3):</label>
+          <input type="file" name="imagenes" id="imagenes" accept="image/*" multiple max="3">
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+        </div>
+      </div>
+      <!-- Formulario Auto (solo visible si activo) -->
+      <div id="form-auto" class="cotiz-opcion-form" style="display:none;">
+        <input type="hidden" id="titulo-auto" value="Auto">
+        <div class="form-group">
+          <label for="auto-seleccionado">Auto seleccionado:</label>
+          <input type="text" id="auto-seleccionado" name="auto-seleccionado">
+        </div>
+        <div class="form-group">
+          <label for="auto-llegada-dia">Día de llegada:</label>
+          <input type="date" id="auto-llegada-dia" name="auto-llegada-dia">
+          <label for="auto-llegada-hora">Hora de llegada:</label>
+          <input type="time" id="auto-llegada-hora" name="auto-llegada-hora">
+        </div>
+        <div class="form-group">
+          <label for="auto-devol-dia">Día de devolución:</label>
+          <input type="date" id="auto-devol-dia" name="auto-devol-dia">
+          <label for="auto-devol-hora">Hora de devolución:</label>
+          <input type="time" id="auto-devol-hora" name="auto-devol-hora">
+        </div>
+        <div class="form-group">
+          <label for="auto-personas">¿Cuántas personas son?</label>
+          <input type="number" id="auto-personas" name="auto-personas" min="1" max="20" value="1">
+        </div>
+        <div id="auto-nombres-personas"></div>
+        <div class="form-group">
+          <label for="auto-foto">Foto del auto:</label>
+          <input type="file" id="auto-foto" name="auto-foto" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label for="auto-nota">Nota:</label>
+          <textarea id="auto-nota" name="auto-nota" rows="4"></textarea>
+        </div>
+      </div>
+      <button type="button" id="descargar-pdf">Descargar PDF</button>
+    </form>
+  </div>
+  <script src="/script.js"></script>
+  <script>
+    // Poner la fecha de hoy en el campo oculto fecha-reserva
+    document.addEventListener('DOMContentLoaded', function() {
+      const fecha = new Date();
+      const yyyy = fecha.getFullYear();
+      const mm = String(fecha.getMonth() + 1).padStart(2, '0');
+      const dd = String(fecha.getDate()).padStart(2, '0');
+      document.getElementById('fecha-reserva').value = `Reservado en ${dd}/${mm}/${yyyy}`;
+    });
+  </script>
+</body>
+</html> 
