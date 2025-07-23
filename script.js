@@ -126,9 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const descuentoPorc = parseFloat(document.getElementById('descuento-auto').value) || 0;
     let fee = 0;
     if (dias >= 5) fee = 55;
-    else if (dias === 4) fee = 45;
-    else if (dias === 3) fee = 35;
-    else fee = 0;
+    else if (dias >= 3) fee = 45;
+    else if (dias >= 0) fee = 35;
     const descuento = precio * (descuentoPorc / 100);
     const precioConDescuento = precio - descuento;
     const total = precioConDescuento + fee;

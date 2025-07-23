@@ -63,14 +63,7 @@
         </div>
         <div class="form-group">
           <label for="descuento-auto">Descuento (%):</label>
-          <select id="descuento-auto" name="descuento-auto" required>
-            <option value="0">0%</option>
-            <option value="10">10%</option>
-            <option value="15">15%</option>
-            <option value="20" selected>20%</option>
-            <option value="25">25%</option>
-            <option value="30">30%</option>
-          </select>
+          <input type="number" id="descuento-auto" name="descuento-auto" min="0" max="100" step="1" value="20" required>
         </div>
         <button type="submit">Calcular total</button>
         <button type="button" id="reset-auto" class="reset-btn">Reiniciar</button>
@@ -131,5 +124,35 @@
     </div>
   </div>
   <script src="script.js"></script>
+  <!-- Formulario de prueba para PDF -->
+<div style="margin:2rem 0; padding:1rem; border:1px solid #ccc;">
+  <h3>Probar generación de PDF</h3>
+  <form id="pdf-test-form">
+    <input type="text" id="pdf-titulo" placeholder="Título" value="Cotización de Prueba" required>
+    <input type="text" id="pdf-desc" placeholder="Descripción" value="Esta es una cotización de ejemplo." required>
+    <button type="submit">Generar PDF</button>
+  </form>
+</div>
+<script>
+document.getElementById('pdf-test-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const titulo = document.getElementById('pdf-titulo').value;
+  const descripcion = document.getElementById('pdf-desc').value;
+  const response = await fetch('/api/generar-pdf', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ titulo, descripcion })
+  });
+  const blob = await response.blob();
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'cotizacion.pdf';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  window.URL.revokeObjectURL(url);
+});
+</script>
 </body>
 </html> 
